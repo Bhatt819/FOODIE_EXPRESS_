@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health & Diet | Food Delivery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+
+    header {
+      background-color: #af271b;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .health-banner {
+      background-color: #a9cc2c;
+      color: white;
+      text-align: center;
+      padding: 30px 0;
+      font-size: 2.5em;
+      margin-bottom: 40px;
+    }
+
+    .health-banner p {
+      font-size: 1.2em;
+    }
+
+    .diet-options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+
+    .diet-option {
+      flex: 1;
+      min-width: 250px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .diet-option img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .diet-option h3 {
+      margin: 15px 0;
+      font-size: 1.5em;
+      color: #333;
+    }
+
+    .diet-option p {
+      color: #777;
+      font-size: 1.1em;
+    }
+
+    .diet-option button {
+      background-color: #ff6f61;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      font-size: 1.1em;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .diet-option button:hover {
+      background-color: #ff4c3b;
+    }
+
+    .cta-section {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .cta-section h2 {
+      font-size: 2em;
+      color: #333;
+    }
+
+    .cta-section button {
+      background-color: #6bcf89;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 4px;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .cta-section button:hover {
+      background-color: #4a9d6a;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <h1>Foodie Express</h1>
+    <p>Your favorite healthy meals delivered fast!</p>
+  </header>
+
+  <!-- Health & Diet Banner -->
+  <section class="health-banner">
+    <h2>Healthy & Diet-Friendly Meals</h2>
+    <p>Discover our range of healthy, diet-friendly meal options that are perfect for your lifestyle!</p>
+  </section>
+
+  <!-- Diet Options Section -->
+  <div class="container">
+    <section class="diet-options">
+      <!-- Vegan Option -->
+      <div class="diet-option">
+        <img src="vegan.jpeg.jpeg" alt="Vegan Dish">
+        <h3>Vegan Meals</h3>
+        <p>Plant-based dishes that are packed with nutrients and flavor, perfect for a vegan lifestyle.</p>
+        <button>Browse Vegan Options</button>
+      </div>
+      
+      <!-- Gluten-Free Option -->
+      <div class="diet-option">
+        <img src="gluten.jpeg.jpeg" alt="Gluten-Free Dish">
+        <h3>Gluten-Free Meals</h3>
+        <p>Delicious, gluten-free options for those with dietary restrictions or sensitivity to gluten.</p>
+        <button>Browse Gluten-Free Options</button>
+      </div>
+
+      <!-- Low-Calorie Option -->
+      <div class="diet-option">
+        <img src="low.jpeg.jpeg" alt="Low-Calorie Dish">
+        <h3>Low-Calorie Meals</h3>
+        <p>Stay healthy without compromising on flavor with our low-calorie meal options.</p>
+        <button>Browse Low-Calorie Options</button>
+      </div>
+
+      <!-- Keto Option -->
+      <div class="diet-option">
+        <img src="ketoo.jpeg.jpg" alt="Keto Dish">
+        <h3>Keto-Friendly Meals</h3>
+        <p>Perfect for those following a low-carb, high-fat diet. Enjoy our keto-friendly meals.</p>
+        <button>Browse Keto Options</button>
+      </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section">
+      <h2>Order Your Healthy Meal Today!</h2>
+      <button onclick="window.location.href='order.html'">Order Now</button>
+    </section>
+  </div>
+</body>
+</html>

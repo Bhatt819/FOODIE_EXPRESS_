@@ -1,0 +1,217 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            background: #222;
+            color: white;
+            height: 100vh;
+            padding: 20px;
+            position: fixed;
+        }
+        .sidebar h2 {
+            text-align: center;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 15px;
+            border-bottom: 1px solid #444;
+            cursor: pointer;
+        }
+        .sidebar ul li:hover {
+            background: #444;
+        }
+        .main-content {
+            margin-left: 270px;
+            padding: 20px;
+            width: calc(100% - 270px);
+        }
+        .card {
+            background: #f4f4f4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 10px 0;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        }
+        .chart-container {
+            width: 100%;
+            max-width: 600px;
+        }
+        /* New Styles for Manage Users form */
+        .form-group {
+            margin: 10px 0;
+        }
+        .form-group input {
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #218838;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <ul>
+            <li onclick="showSection('dashboard')">Dashboard</li>
+            <li onclick="showSection('users')">Manage Users</li>
+            <li onclick="showSection('orders')">Orders</li>
+            <li onclick="showSection('reports')">Reports</li>
+            <li onclick="window.location.href='setting.html'">Settings</li>
+            <li onclick="logout()">Logout</li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <h1 id="section-title">Welcome, Admin</h1>
+        
+        <div id="dashboard" class="section">
+            <div class="card">
+                <h3>Total Users</h3>
+                <p>150</p>
+            </div>
+            <div class="card">
+                <h3>Orders Today</h3>
+                <p>35</p>
+            </div>
+            <div class="card">
+                <h3>Revenue</h3>
+                <p>₹2,500</p>
+            </div>
+            <div class="chart-container">
+                <canvas id="salesChart"></canvas>
+            </div>
+        </div>
+        
+        <!-- Updated Manage Users section with form and table -->
+        <div id="users" class="section" style="display:none;">
+            <h2>Manage Users</h2>
+            <div class="card">
+                <h3>Add Member Details</h3>
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="role" placeholder="Role">
+                </div>
+                <button class="btn" onclick="addMember()">Add Member</button>
+            </div>
+
+            <h3>Member List</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody id="memberList">
+                    <!-- Dynamically added members will appear here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div id="orders" class="section" style="display:none;">
+            <h2>Manage Orders</h2>
+            <p>Here you can manage orders...</p>
+        </div>
+        
+        <div id="reports" class="section" style="display:none;">
+            <h2>Reports & Analytics</h2>
+            <p>View reports here...</p>
+        </div>
+    </div>
+
+    <script>
+        function openSettings() {
+            window.location.href = "setting.html";
+        }
+        
+        function showSection(section) {
+            document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
+            document.getElementById(section).style.display = 'block';
+            document.getElementById('section-title').innerText = section.charAt(0).toUpperCase() + section.slice(1);
+        }
+
+        function logout() {
+            alert("Logging out...");
+            window.location.href = 'login.html';
+        }
+
+        // Add new member functionality
+        function addMember() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const role = document.getElementById('role').value;
+
+            if (name && email && role) {
+                const memberList = document.getElementById('memberList');
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `<td>${name}</td><td>${email}</td><td>${role}</td>`;
+                memberList.appendChild(newRow);
+
+                // Clear the form fields after adding
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('role').value = '';
+            } else {
+                alert("Please fill in all fields");
+            }
+        }
+
+        // Chart.js example
+        const ctx = document.getElementById('salesChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                datasets: [{
+                    label: 'Sales (₹)',
+                    data: [5000, 10000, 15000, 20000, 25000],
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)'
+                }]
+            }
+        });
+    </script>
+</body>
+</html>
